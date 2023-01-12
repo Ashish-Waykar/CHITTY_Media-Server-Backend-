@@ -9,14 +9,15 @@ const dbURL="mongodb://localhost:27017/socialmedia_"
 require('./models/user')
 
 app.use(express.json())
-
+require('./models/user')
+app.use(require('./routes/auth'))
 //declering the middleware 
-const customMiddleware =(req,res,next)=>{
-    console.log("this is middleware")
-    next()
-}
+// const customMiddleware =(req,res,next)=>{
+//     console.log("this is middleware")
+//     next()
+// }
 //applying the middleware to every route
-app.use(customMiddleware)
+// app.use(customMiddleware)
 // creating specified middleware
 // const specialMiddleware=(req,res,next)=>{
 //     console.log("specified middleware ");
