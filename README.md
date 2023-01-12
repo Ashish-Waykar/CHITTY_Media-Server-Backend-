@@ -11,6 +11,7 @@ CHITTY_Media is social media app which is written in Nodejs &amp; express . thes
 
 ' middlewares'
 
+'''javascript
 //middlewares in react
 const customMiddleware= (req,res,next)=>{
     console.log("Middleware is Executed ")
@@ -18,6 +19,17 @@ const customMiddleware= (req,res,next)=>{
     next()
 }
 app.use(customMiddleware)
+
+// special middleware for about page route
+const specialMiddleware=(req,res,next)=>{
+    console.log("special middlewaer");
+    next()
+}
+// applying special middleware these midleware will specially run for about page route 
+app.get('/about',specialMiddleware,(req,res)=>{
+    res.send("about page");
+})
+'''
 
 
 #use nodemon
