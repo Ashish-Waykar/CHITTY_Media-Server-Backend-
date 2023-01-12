@@ -36,5 +36,9 @@ app.get('/about',specialMiddleware,(req,res)=>{
 ## npm install nodemon
 ## nodemon app.js or nodemon app
 
-" to use the mongoose for use  the Mongo db "
+` to use the mongoose for use  the Mongo db `
 ## npm install mongoose
+
+
+`encrypt the passwords use bcrytpjs dependancy `
+## npm install bcryptjs
