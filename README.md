@@ -42,3 +42,6 @@ app.get('/about',specialMiddleware,(req,res)=>{
 
 `encrypt the passwords use bcrytpjs dependancy `
 ## npm install bcryptjs
+
+`for token using JWT Tokens for loged In User `
+## npm install jsonwebtoken
