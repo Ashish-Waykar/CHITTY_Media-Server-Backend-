@@ -3,10 +3,12 @@ const router=express.Router()
 const mongoose = require('mongoose')
 const User = mongoose.model('User') 
 const bcrypt= require('bcryptjs')
+
+//Homepage Route
 router.get('/',(req,res)=>{
      res.send("new route is done");
 })
-
+//Signup Rout
 router.post('/signup',(req,res)=>{
     const { name , email , pass}=req.body
     if(!email || !name || !pass){
@@ -33,5 +35,32 @@ router.post('/signup',(req,res)=>{
         })
         
     }).catch(err=>{console.log(err)})
+})
+//Signin Route
+router.post('/signin',(req,res)=>{
+    const {email,pass}=req.body
+    if(!email || !pass){
+        return res.status(422).json({error:"Invalid Email or Password"})
+    }
+    User.findOne({email:email})
+    .then(savedUser=>{
+        if(!savedUser){
+            return res.status(422).json({error:"Invalid Email or Password"})
+        }
+        bcrypt.compare(pass,savedUser.password)
+        .then(doMatch=>{
+                    if(doMatch){
+                        return res.json({message:"Successfully Signed In"})
+                    }else{
+                        return res.status(422).json({error:"Invalid Email Or Password"})
+                    }
+                    }
+                ).catch(err=>{
+                    console.log(err)
+                })
+            }
+        ).catch(err=>{
+            console.log(err)
+        })
 })
 module.exports = router
