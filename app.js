@@ -6,11 +6,7 @@ const dbport= 7001
 const dbURL="mongodb://localhost:27017/socialmedia_"  
 
 //getting the embading the model
-require('./models/user')
 
-app.use(express.json())
-require('./models/user')
-app.use(require('./routes/auth'))
 //declering the middleware 
 // const customMiddleware =(req,res,next)=>{
 //     console.log("this is middleware")
@@ -47,3 +43,10 @@ console.log('Listning On : ',dbport),),)
 app.listen(PORT,()=>{
     console.log("Server Is Running On localhost:",PORT)
 })
+
+require('./models/user')
+require('./models/post')
+app.use(express.json())
+require('./models/user')
+app.use(require('./routes/auth'))
+app.use(require('./routes/post'))
